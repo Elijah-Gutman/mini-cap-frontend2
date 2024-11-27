@@ -33,6 +33,10 @@ export function ProductsPage() {
     setCurrentProduct(product);
   };
 
+  const handleUpdate = () => {
+    console.log("handleUpdate");
+  };
+
   useEffect(handleIndex, []);
 
   return (
@@ -40,7 +44,7 @@ export function ProductsPage() {
       <ProductsNew onCreate={handleCreate} />
       <ProductsIndex products={products} onShow={handleShow} />
       <Modal show={isProductsShowVisible} onClose={() => setIsProductsShowVisible(false)}>
-        <ProductsShow product={currentProduct} />
+        <ProductsShow product={currentProduct} onUpdate={handleUpdate} />
       </Modal>
     </main>
   );
