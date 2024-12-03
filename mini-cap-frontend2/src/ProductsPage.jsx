@@ -51,6 +51,10 @@ export function ProductsPage() {
   };
   const handleDestroy = (product) => {
     console.log("handleDestroy", product);
+    axios.delete(`/products/${product.id}.json`).then(() => {
+      setProducts(products.filter((p) => p.id !== product.id));
+      setIsProductsShowVisible(false);
+    });
   };
 
   useEffect(handleIndex, []);

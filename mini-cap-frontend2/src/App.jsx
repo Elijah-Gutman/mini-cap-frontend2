@@ -9,6 +9,8 @@ import { Footer } from "./Footer";
 import { ProductsIndexPage } from "./ProductsIndexPage";
 // import { ProductsPage } from "./ProductsPage";  // changing to display only on indexpage
 import { ProductsNewPage } from "./ProductsNewPage";
+import { ProductsShowPage } from "./ProductsShowPage";
+import { ProductsEditPage } from "./ProductsEditPage";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
@@ -39,6 +41,16 @@ const router = createBrowserRouter([
       {
         path: "/products/new",
         element: <ProductsNewPage />,
+      },
+      {
+        path: "/products/:id",
+        element: <ProductsShowPage />,
+        loader: ({ params }) => axios.get(`/products/${params.id}.json`).then((response) => response.data),
+      },
+      {
+        path: "/products/:id/edit",
+        element: <ProductsEditPage />,
+        loader: ({ params }) => axios.get(`/products/${params.id}.json`).then((response) => response.data),
       },
       {
         path: "/login",
